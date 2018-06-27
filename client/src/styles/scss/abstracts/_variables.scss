@@ -1,0 +1,38 @@
+// COLORS
+// =======
+$color-white: #fafafa;
+$color-grey-light: #eee;
+$color-grey-medium: #bdbdbd;
+$color-grey-dark: #555;
+$color-black: #262626;
+
+$color-red: #ef5350;
+$color-orange: #ff9800;
+$color-yellow: #fdd835;
+$color-green: #66bb6a;
+$color-blue: #2196f3;
+$color-purple: #ab47bc;
+
+$color-primary: $color-black;
+$color-secondary: $color-grey-dark;
+$color-tertiary: $color-red;
+$color-accent: $color-green;
+
+// TYPOGRAPHY
+// ===========
+$font-heading: serif;
+$font-body: sans-serif;
+
+// LAYOUT
+// =======
+// Structure
+$container-width: 88rem;
+
+// Spacers
+$spacer-small: 1.6rem;
+$spacer-medium: 3.2rem;
+$spacer-large: 4.8rem;
+$spacer-huge: 7.2rem;
+
+// Float grid
+$gutter-horizontal: $spacer-medium;
