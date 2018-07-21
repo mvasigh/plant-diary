@@ -5,6 +5,13 @@ const express = require('express'),
 // APP CONFIG
 // ============
 app.use(express.static(path.join(__dirname, 'client/build')));
+const admin = require('firebase-admin');
+const serviceAccount = require('./config/serviceAccountKey.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://plant-diary-1e535.firebaseio.com'
+});
 
 // ROUTER IMPORTS
 // ============
