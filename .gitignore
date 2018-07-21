@@ -74,3 +74,4 @@ typings/
 
 # Auth
 config/keys/
+config/serviceAccountKey.json
