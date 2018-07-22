@@ -5,6 +5,9 @@ const express = require('express'),
 // APP CONFIG
 // ============
 app.use(express.static(path.join(__dirname, 'client/build')));
+
+// FIREBASE CONFIG
+// ============
 const admin = require('firebase-admin');
 const serviceAccount = require('./config/serviceAccountKey.json');
 
