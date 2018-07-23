@@ -1,19 +1,60 @@
 import React, { Component } from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { firebaseConnect } from 'react-redux-firebase';
 
 class UserNew extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: ''
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    console.log(this.props.firebase);
+  }
+
+  handleInputChange(e) {
+    const { id, value } = e.target;
+    this.setState({ [id]: value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log(this.props.firebase);
+  }
+
   renderNewUserForm() {
+    const { email, password } = this.state;
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <div className="field">
           <label className="label">Email address:</label>
           <div className="control">
-            <input className="input" type="email" />
+            <input
+              value={email}
+              id="email"
+              className="input"
+              type="email"
+              onChange={this.handleInputChange}
+            />
           </div>
         </div>
         <div className="field">
           <label className="label">Password:</label>
           <div className="control">
-            <input className="input" type="password" />
+            <input
+              value={password}
+              id="password"
+              className="input"
+              type="password"
+              onChange={this.handleInputChange}
+            />
           </div>
         </div>
         <button className="button is-primary">Log in</button>
@@ -28,7 +69,7 @@ class UserNew extends Component {
           <div className="columns is-desktop">
             <div className="column is-6 is-offset-3">
               <p className="title is-4">Create a new account</p>
-              <div className="box">{this.renderLoginForm()}</div>
+              <div className="box">{this.renderNewUserForm()}</div>
             </div>
           </div>
         </div>
@@ -37,4 +78,4 @@ class UserNew extends Component {
   }
 }
 
-export default UserNew;
+export default connect(({ firebase }) => ({ firebase }))(UserNew);
