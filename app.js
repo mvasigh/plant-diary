@@ -1,28 +1,32 @@
 const express = require('express'),
+  app = express(),
   path = require('path'),
-  app = express();
+  mongoose = require('mongoose'),
+  bodyParser = require('body-parser');
+
+// DB CONFIG
+// ============
+const mongoURI = process.env.MONGO_URI || require('./config/dbConfig').mongoURI;
+mongoose.connect(
+  mongoURI,
+  { useNewUrlParser: true },
+  () => console.log('Connected to database')
+);
+
+// TODO: authentication
 
 // APP CONFIG
 // ============
 app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// FIREBASE CONFIG
+// ROUTER CONFIG
 // ============
-const admin = require('firebase-admin');
-const serviceAccount = require('./config/serviceAccountKey.json');
+const usersRoutes = require('./routes/api/users'),
+  plantsRoutes = require('./routes/api/plants');
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://plant-diary-1e535.firebaseio.com'
-});
-
-// ROUTER IMPORTS
-// ============
-const usersRoutes = require('./routes/users');
-
-// ROUTES CONFIG
-// ============
-app.use('/users', usersRoutes);
+app.use('/api/users', usersRoutes);
+app.use('/api/plants', plantsRoutes);
 
 // SERVER CONFIG
 // ============
