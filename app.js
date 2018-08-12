@@ -20,8 +20,8 @@ mongoose.connect(
 // Middleware
 // ---
 app.use(express.static(path.join(__dirname, 'client/build')));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(morgan);
+app.use(morgan('combined'));
+app.use(bodyParser.json({ type: '*/*' }));
 
 // Services
 // ---
@@ -29,9 +29,11 @@ require('./services/passport');
 
 // ROUTER CONFIG
 // ============
-const usersRoutes = require('./routes/api/users'),
+const indexRoutes = require('./routes/api/index'),
+  usersRoutes = require('./routes/api/users'),
   plantsRoutes = require('./routes/api/plants');
 
+app.use('/api', indexRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/plants', plantsRoutes);
 
