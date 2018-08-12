@@ -2,6 +2,7 @@ const express = require('express'),
   app = express(),
   path = require('path'),
   mongoose = require('mongoose'),
+  morgan = require('morgan'),
   bodyParser = require('body-parser');
 
 // DB CONFIG
@@ -13,12 +14,18 @@ mongoose.connect(
   () => console.log('Connected to database')
 );
 
-// TODO: authentication
-
 // APP CONFIG
 // ============
+
+// Middleware
+// ---
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(morgan);
+
+// Services
+// ---
+require('./services/passport');
 
 // ROUTER CONFIG
 // ============
