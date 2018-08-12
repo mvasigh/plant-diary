@@ -1,9 +1,9 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express'),
+  router = express.Router(),
+  AuthController = require('../../controllers/AuthController'),
+  { requireAuth, requireSignIn } = require('../../middleware');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.post('/signup', AuthController.signUp);
+router.post('/signin', requireSignIn, AuthController.signIn);
 
 module.exports = router;
