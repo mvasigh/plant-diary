@@ -27,15 +27,10 @@ app.use(bodyParser.json({ type: '*/*' }));
 // ---
 require('./services/passport');
 
-// ROUTER CONFIG
+// ROUTER
 // ============
-const indexRoutes = require('./routes/api/index'),
-  usersRoutes = require('./routes/api/users'),
-  plantsRoutes = require('./routes/api/plants');
-
-app.use('/api', indexRoutes);
-app.use('/api/users', usersRoutes);
-app.use('/api/plants', plantsRoutes);
+const router = require('./router');
+router(app);
 
 // SERVER CONFIG
 // ============
