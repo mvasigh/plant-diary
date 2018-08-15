@@ -1,16 +1,9 @@
 const express = require('express'),
   router = express.Router(),
-  Plant = require('../../models/Plant');
+  { requireAuth } = require('../../middleware'),
+  PlantController = require('../../controllers/PlantController');
 
-router.get('/:plantId', async (req, res) => {
-  const { plantId } = req.params;
-  const plant = await Plant.findById(plantId);
-  res.json(plant);
-});
-
-router.post('/', async (req, res) => {
-  const plant = await Plant.create(req.body);
-  res.json(plant);
-});
+router.get('/:plantId', PlantController.getPlant);
+router.post('/', requireAuth, PlantController.createPlant);
 
 module.exports = router;
