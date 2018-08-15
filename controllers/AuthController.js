@@ -2,6 +2,8 @@ const jwt = require('jwt-simple'),
   config = require('../config/authConfig'),
   User = require('../models/User');
 
+// TODO: pass user id to user in JWT
+
 function tokenForUser(user) {
   const timestamp = new Date().getTime();
   return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
