@@ -1,5 +1,9 @@
-const Plant = require('../models/Plant'),
-  User = require('../models/User');
+const Plant = require('../models/Plant');
+
+exports.getAllPlants = async function(req, res, next) {
+  const plants = await Plant.find({ owners: req.user._id });
+  res.json({ status: 'success', response: plants });
+};
 
 exports.getPlant = function(req, res, next) {
   const { plantId } = req.params;
@@ -7,18 +11,15 @@ exports.getPlant = function(req, res, next) {
     if (err) {
       return next(err);
     }
-    res.json({ stats: 'success', plant });
+    res.json({ stats: 'success', response: plant });
   });
 };
 
-// TODO: pass user id to user in JWT
-
-exports.createPlant = async function(req, res, next) {
-  const user = await User.findOne({ email: req.user.email });
-  Plant.create({ ...req.body.plant, owners: [user._id] }, (err, plant) => {
+exports.createPlant = function(req, res, next) {
+  Plant.create({ ...req.body.plant, owners: [req.user._id] }, (err, plant) => {
     if (err) {
       return next(err);
     }
-    res.json({ status: 'success', plant });
+    res.json({ status: 'success', response: plant });
   });
 };
