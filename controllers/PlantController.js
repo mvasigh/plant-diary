@@ -23,3 +23,7 @@ exports.createPlant = function(req, res, next) {
     res.json({ status: 'success', response: plant });
   });
 };
+
+exports.getDayOverview = function(req, res, next) {
+  const { timeStamp } = req.params;
+};
