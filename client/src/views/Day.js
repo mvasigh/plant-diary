@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Section from '../components/Section';
+import PlantCard from '../components/PlantCard';
+import PlantCardList from '../components/PlantCardList';
 
-class DayView extends Component {
+class Day extends Component {
   renderDayNav() {
     return (
       <nav className="level">
@@ -21,9 +23,10 @@ class DayView extends Component {
     return (
       <div className="app-page">
         <Section>{this.renderDayNav()}</Section>
+        <Section>{this.renderPlants()}</Section>
       </div>
     );
   }
 }
 
-export default DayView;
+export default Day;
