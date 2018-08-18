@@ -1,5 +1,5 @@
 import { GET_PLANT, GET_ALL_PLANTS } from './Types';
-import axios from 'axios';
+import { http as axios } from '../../services/axios';
 
 export function getPlant(plantId) {
   const request = axios.get(`/api/plants/${plantId}`);
@@ -8,3 +8,5 @@ export function getPlant(plantId) {
     payload: request
   };
 }
+
+// getAllPlants function here
