@@ -6,7 +6,6 @@ import {
 } from '../actions/Types';
 
 export default function plantsReducer(state = {}, action) {
-  let plant;
   switch (action.type) {
     case GET_ALL_PLANTS:
       return action.payload.data.response.reduce((acc, plant) => {
@@ -14,14 +13,20 @@ export default function plantsReducer(state = {}, action) {
         return acc;
       }, {});
     case GET_PLANT:
-      plant = action.payload.data.response;
-      return { [plant._id]: plant, ...state };
+      return {
+        ...state,
+        [action.payload.data.response._id]: action.payload.data.response
+      };
     case WATER_PLANT:
-      plant = action.payload.data.response;
-      return { [plant._id]: plant, ...state };
+      return {
+        ...state,
+        [action.payload.data.response._id]: action.payload.data.response
+      };
     case FERTILIZE_PLANT:
-      plant = action.payload.data.response;
-      return { [plant._id]: plant, ...state };
+      return {
+        ...state,
+        [action.payload.data.response._id]: action.payload.data.response
+      };
     default:
       return state;
   }
