@@ -3,10 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import ScrollToTop from './components/ScrollToTop';
 import Navbar from './components/Navbar';
-import Home from './views/Home';
-import Day from './views/Day';
-import UserLogin from './views/UserLogin';
-import UserNew from './views/UserNew';
+import HomeView from './views/HomeView';
+import LoginView from './views/LoginView';
+import RegisterView from './views/RegisterView';
 
 class App extends Component {
   render() {
@@ -15,10 +14,9 @@ class App extends Component {
         <ScrollToTop>
           <Navbar />
           <Switch>
-            <Route path="/day" component={Day} />
-            <Route path="/users/login" component={UserLogin} />
-            <Route path="/users/new" component={UserNew} />
-            <Route path="/" component={Home} />
+            <Route path="/users/login" component={LoginView} />
+            <Route path="/users/new" component={RegisterView} />
+            <Route path="/" component={HomeView} />
           </Switch>
         </ScrollToTop>
       </Router>

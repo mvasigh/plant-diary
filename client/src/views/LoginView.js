@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class UserLogin extends Component {
+class LoginView extends Component {
   renderLoginForm() {
     return (
       <form>
@@ -38,4 +38,4 @@ class UserLogin extends Component {
   }
 }
 
-export default UserLogin;
+export default LoginView;

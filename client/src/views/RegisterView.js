@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { firebaseConnect } from 'react-redux-firebase';
 
-class UserNew extends Component {
+class RegisterView extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +25,7 @@ class UserNew extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.props.firebase);
+    console.log('Submitted');
   }
 
   renderNewUserForm() {
@@ -78,4 +77,4 @@ class UserNew extends Component {
   }
 }
 
-export default connect(({ firebase }) => ({ firebase }))(UserNew);
+export default RegisterView;
