@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import Avatar from './Avatar';
 import Button from './Button';
 
@@ -20,7 +21,7 @@ class PlantCard extends Component {
 
   renderDetailBar() {
     const { water, fertilizer } = this.props.history;
-    return water.map(timestamp => <li>{timestamp}</li>);
+    return water.map(timestamp => <li>{moment(timestamp).fromNow()}</li>);
   }
 
   renderActionBar() {
