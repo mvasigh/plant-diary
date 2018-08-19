@@ -1,0 +1,17 @@
+.CountdownButton {
+  height: 4.2rem;
+  width: 4.2rem;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  background-color: #eee;
+}
+
+.CountdownButton:hover {
+  background-color: #ddd;
+  transform: translateY(-0.1rem);
+}
+
+.CountdownButton:active {
+  transform: translateY(-0.05rem);
+}
