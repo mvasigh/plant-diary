@@ -19,10 +19,8 @@ class HomeView extends Component {
     return (
       <div className="app-page">
         <section className="section">
-          <div className="columns">
-            <div className="column is-half is-offset-one-quarter">
-              {this.renderPlantList()}
-            </div>
+          <div style={{ maxWidth: '720px' }} className="container">
+            {this.renderPlantList()}
           </div>
         </section>
       </div>
