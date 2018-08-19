@@ -9,4 +9,10 @@ export function getPlant(plantId) {
   };
 }
 
-// getAllPlants function here
+export function getAllPlants() {
+  const request = axios.get('/api/plants/');
+  return {
+    type: GET_ALL_PLANTS,
+    payload: request
+  };
+}
