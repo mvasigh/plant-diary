@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
+import Avatar from './Avatar';
+import Button from './Button';
 
 class PlantCard extends Component {
   renderHeader() {
     const { name, type } = this.props;
     return (
-      <article className="media">
+      <article style={{ marginBottom: '1rem' }} className="media">
         <figure className="media-left">
-          <p className="image is-64x64">
-            <img
-              style={{
-                borderRadius: '50%'
-              }}
-              src="https://bulma.io/images/placeholders/128x128.png"
-            />
-          </p>
+          <Avatar imageSrc="https://png.icons8.com/material/50/000000/plant-under-sun.png" />
         </figure>
         <div className="media-content">
           <p className="title is-3">{name}</p>
@@ -26,20 +21,43 @@ class PlantCard extends Component {
   renderDetailBar() {
     const { preferences } = this.props;
     const { waterFrequency, fertilizerFrequency, sunlightAmount } = preferences;
+    return <div className="content">Sample plant info here</div>;
+  }
+
+  renderActionBar() {
     return (
-      <div className="level">
-        <div className="level-item">{`water every ${waterFrequency} hrs`}</div>
-        <div className="level-item">{`fert. ${fertilizerFrequency} days`}</div>
-        <div className="level-item">{`${sunlightAmount} sun`}</div>
-      </div>
+      <nav className="level is-mobile">
+        <div className="level-left">
+          <div className="level-item">Goodbye</div>
+        </div>
+        <div className="level-right">
+          <div className="level-item">
+            <Button
+              color="success"
+              onClick={() => alert(`Fertilized ${this.props.name}`)}
+            >
+              Fertilize
+            </Button>
+          </div>
+          <div className="level-item">
+            <Button
+              color="link"
+              onClick={() => alert(`Watered ${this.props.name}`)}
+            >
+              Water
+            </Button>
+          </div>
+        </div>
+      </nav>
     );
   }
 
   render() {
     return (
-      <div className="box">
+      <div className="box" style={{ marginBottom: '1rem' }}>
         {this.renderHeader()}
         {this.renderDetailBar()}
+        {this.renderActionBar()}
       </div>
     );
   }
