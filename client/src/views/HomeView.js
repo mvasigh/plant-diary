@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import PlantCardList from '../components/PlantCardList';
-import { getPlant, getAllPlants } from '../actions/PlantsActions';
+import {
+  getPlant,
+  getAllPlants,
+  waterPlant,
+  fertilizePlant
+} from '../actions/PlantsActions';
 
 class HomeView extends Component {
   componentDidMount() {
@@ -12,7 +17,14 @@ class HomeView extends Component {
   // TODO: figure out why card list of plants is not rendering
   renderPlantList() {
     const plants = _.toArray(this.props.plants);
-    return <PlantCardList plants={plants} />;
+    const { waterPlant, fertilizePlant } = this.props;
+    return (
+      <PlantCardList
+        plants={plants}
+        onWaterClick={waterPlant}
+        onFertilizeClick={fertilizePlant}
+      />
+    );
   }
 
   render() {
@@ -32,5 +44,5 @@ const mapStateToProps = state => ({ plants: state.plants });
 
 export default connect(
   mapStateToProps,
-  { getPlant, getAllPlants }
+  { getPlant, getAllPlants, waterPlant, fertilizePlant }
 )(HomeView);

@@ -3,10 +3,14 @@ import PlantCard from './PlantCard';
 
 class PlantCardList extends Component {
   renderPlants() {
-    const { plants } = this.props;
+    const { plants, onWaterClick, onFertilizeClick } = this.props;
     return plants.map((plant, i) => (
       <li key={i}>
-        <PlantCard {...plant} />
+        <PlantCard
+          {...plant}
+          onWaterClick={() => onWaterClick(plant._id)}
+          onFertilizeClick={() => onFertilizeClick(plant._id)}
+        />
       </li>
     ));
   }

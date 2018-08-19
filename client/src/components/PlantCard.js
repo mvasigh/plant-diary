@@ -19,12 +19,12 @@ class PlantCard extends Component {
   }
 
   renderDetailBar() {
-    const { preferences } = this.props;
-    const { waterFrequency, fertilizerFrequency, sunlightAmount } = preferences;
-    return <div className="content">Sample plant info here</div>;
+    const { water, fertilizer } = this.props.history;
+    return water.map(timestamp => <li>{timestamp}</li>);
   }
 
   renderActionBar() {
+    const { onWaterClick, onFertilizeClick } = this.props;
     return (
       <nav className="level is-mobile">
         <div className="level-left">
@@ -32,18 +32,12 @@ class PlantCard extends Component {
         </div>
         <div className="level-right">
           <div className="level-item">
-            <Button
-              color="success"
-              onClick={() => alert(`Fertilized ${this.props.name}`)}
-            >
+            <Button color="success" onClick={onFertilizeClick}>
               Fertilize
             </Button>
           </div>
           <div className="level-item">
-            <Button
-              color="link"
-              onClick={() => alert(`Watered ${this.props.name}`)}
-            >
+            <Button color="link" onClick={onWaterClick}>
               Water
             </Button>
           </div>
