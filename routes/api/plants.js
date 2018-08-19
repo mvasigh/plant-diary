@@ -4,7 +4,9 @@ const express = require('express'),
   PlantController = require('../../controllers/PlantController');
 
 router.get('/', requireAuth, PlantController.getAllPlants);
-router.get('/:plantId', requireAuth, PlantController.getPlant);
 router.post('/', requireAuth, PlantController.createPlant);
+router.get('/:plantId', requireAuth, PlantController.getPlant);
+router.get('/:plantId/water', requireAuth, PlantController.waterPlant);
+router.get('/:plantId/fertilize', requireAuth, PlantController.fertilizePlant);
 
 module.exports = router;
