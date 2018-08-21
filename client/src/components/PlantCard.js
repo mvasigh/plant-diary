@@ -21,7 +21,24 @@ class PlantCard extends Component {
 
   renderDetailBar() {
     const { water, fertilizer } = this.props.history;
-    return water.map(timestamp => <li>{moment(timestamp).fromNow()}</li>);
+    const waterTags = water.map(entry => (
+      <span key={entry} className="tag is-info">
+        {moment(entry).fromNow()}
+      </span>
+    ));
+    const fertilizerTags = fertilizer.map(entry => (
+      <span key={entry} className="tag is-success">
+        {moment(entry).fromNow()}
+      </span>
+    ));
+    return (
+      <div style={{ margin: '20px' }}>
+        <div className="tags">
+          {waterTags}
+          {fertilizerTags}
+        </div>
+      </div>
+    );
   }
 
   renderActionBar() {
