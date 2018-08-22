@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import HomeView from './views/HomeView';
 import LoginView from './views/LoginView';
 import RegisterView from './views/RegisterView';
+import NewPlantView from './views/NewPlantView';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
           <Switch>
             <Route path="/users/login" component={LoginView} />
             <Route path="/users/new" component={RegisterView} />
+            <Route path="/plants/new" component={NewPlantView} />
             <Route path="/" component={HomeView} />
           </Switch>
         </ScrollToTop>
