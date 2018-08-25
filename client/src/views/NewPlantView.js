@@ -50,6 +50,7 @@ class NewPlantView extends Component {
       <CardContent>
         <TextField
           fullWidth
+          margin="normal"
           value={name}
           onChange={this.handleInputChange('name')}
           label="Plant Name"
@@ -57,6 +58,7 @@ class NewPlantView extends Component {
         />
         <TextField
           fullWidth
+          margin="normal"
           value={type}
           onChange={this.handleInputChange('type')}
           label="Plant Type"
@@ -64,6 +66,7 @@ class NewPlantView extends Component {
         />
         <TextField
           fullWidth
+          margin="normal"
           type="number"
           inputProps={{
             min: 1,
@@ -76,6 +79,7 @@ class NewPlantView extends Component {
         />
         <TextField
           fullWidth
+          margin="normal"
           type="number"
           inputProps={{
             min: 1,
