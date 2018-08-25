@@ -12,6 +12,9 @@ import {
 import GrainIcon from '@material-ui/icons/Grain';
 import WavesIcon from '@material-ui/icons/Waves';
 
+moment.relativeTimeThreshold('m', 60);
+moment.relativeTimeThreshold('h', 24 * 26);
+
 const styles = theme => ({
   card: {
     marginBottom: '24px'
@@ -26,7 +29,7 @@ const styles = theme => ({
 
 class PlantCard extends Component {
   renderDetailBar() {
-    const { water, fertilizer } = this.props.history;
+    const { water, fertilizer } = this.props.plant.history;
     const waterTags = water.map(entry => (
       <span key={entry} className="tag is-info">
         {moment(entry).fromNow()}
@@ -38,17 +41,33 @@ class PlantCard extends Component {
       </span>
     ));
     return (
-      <div style={{ margin: '20px' }}>
-        <div className="tags">
-          {waterTags}
-          {fertilizerTags}
-        </div>
+      <div className="tags">
+        {waterTags}
+        {fertilizerTags}
       </div>
     );
   }
 
+  getTimeUntil = (historyArr, numToAdd, unit) => {
+    const timeTil = moment(Math.max(...historyArr)).add(numToAdd, unit);
+    return timeTil.isBefore(moment()) ? 'now' : timeTil.fromNow(true);
+  };
+
   renderActionBar() {
-    const { classes, onWaterClick, onFertilizeClick } = this.props;
+    const { plant, classes, onWaterClick, onFertilizeClick } = this.props;
+    const { history, preferences } = plant;
+
+    const timeTilWater = this.getTimeUntil(
+      history.water,
+      preferences.waterFrequency,
+      'hours'
+    );
+    const timeTilFertilizer = this.getTimeUntil(
+      history.fertilizer,
+      preferences.fertilizerFrequency,
+      'days'
+    );
+
     return (
       <CardActions>
         <Button
@@ -58,7 +77,7 @@ class PlantCard extends Component {
           onClick={onFertilizeClick}
         >
           <GrainIcon className={classes.extendedIcon} />
-          Fertilize
+          {timeTilFertilizer}
         </Button>
         <Button
           color="primary"
@@ -67,21 +86,21 @@ class PlantCard extends Component {
           onClick={onWaterClick}
         >
           <WavesIcon className={classes.extendedIcon} />
-          Water
+          {timeTilWater}
         </Button>
       </CardActions>
     );
   }
 
   render() {
-    const { classes, onWaterClick, onFertilizeClick } = this.props;
+    const { plant, classes } = this.props;
     return (
       <Card className={classes.card}>
         <CardHeader
-          avatar={<Avatar>{this.props.name[0]}</Avatar>}
-          title={this.props.name}
+          avatar={<Avatar>{plant.name[0]}</Avatar>}
+          title={plant.name}
           titleTypographyProps={{ variant: 'headline' }}
-          subheader={this.props.type}
+          subheader={plant.type}
           subheaderTypographyProps={{ variant: 'subheading' }}
         />
         <CardContent>{this.renderDetailBar()}</CardContent>
