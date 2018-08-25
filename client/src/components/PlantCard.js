@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import { withStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 import {
   Card,
   CardHeader,
   CardActions,
   Avatar,
   Button,
-  CardContent
+  CardContent,
+  IconButton
 } from '@material-ui/core';
 import GrainIcon from '@material-ui/icons/Grain';
 import WavesIcon from '@material-ui/icons/Waves';
+import EditIcon from '@material-ui/icons/Edit';
 
 moment.relativeTimeThreshold('m', 60);
 moment.relativeTimeThreshold('h', 24 * 26);
@@ -102,6 +105,13 @@ class PlantCard extends Component {
           titleTypographyProps={{ variant: 'headline' }}
           subheader={plant.type}
           subheaderTypographyProps={{ variant: 'subheading' }}
+          action={
+            <Link to={`/plants/${this.props.plant._id}/edit`}>
+              <IconButton>
+                <EditIcon />
+              </IconButton>
+            </Link>
+          }
         />
         <CardContent>{this.renderDetailBar()}</CardContent>
         {this.renderActionBar()}
