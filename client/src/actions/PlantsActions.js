@@ -1,6 +1,7 @@
 import {
   GET_PLANT,
   GET_ALL_PLANTS,
+  CREATE_PLANT,
   WATER_PLANT,
   FERTILIZE_PLANT
 } from './Types';
@@ -18,6 +19,16 @@ export function getAllPlants() {
   const request = axios.get('/api/plants/');
   return {
     type: GET_ALL_PLANTS,
+    payload: request
+  };
+}
+
+export function createPlant(plant) {
+  const request = axios.post('/api/plants', {
+    plant: plant
+  });
+  return {
+    type: CREATE_PLANT,
     payload: request
   };
 }
