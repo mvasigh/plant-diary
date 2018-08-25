@@ -3,7 +3,8 @@ import {
   GET_ALL_PLANTS,
   WATER_PLANT,
   FERTILIZE_PLANT,
-  CREATE_PLANT
+  CREATE_PLANT,
+  UPDATE_PLANT
 } from '../actions/Types';
 
 export default function plantsReducer(state = {}, action) {
@@ -19,6 +20,11 @@ export default function plantsReducer(state = {}, action) {
         [action.payload.data.response._id]: action.payload.data.response
       };
     case CREATE_PLANT:
+      return {
+        ...state,
+        [action.payload.data.response._id]: action.payload.data.response
+      };
+    case UPDATE_PLANT:
       return {
         ...state,
         [action.payload.data.response._id]: action.payload.data.response
