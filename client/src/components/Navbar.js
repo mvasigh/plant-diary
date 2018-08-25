@@ -5,14 +5,16 @@ class Navbar extends Component {
   render() {
     return (
       <nav className="navbar">
-        <div className="navbar-menu">
-          <div className="navbar-end">
-            <Link to="/" className="navbar-item">
-              Home
-            </Link>
-            <Link to="/plants/new" className="navbar-item">
-              New Plant
-            </Link>
+        <div style={{ maxWidth: '720px' }} className="container">
+          <div className="navbar-menu">
+            <div className="navbar-end">
+              <Link to="/" className="navbar-item">
+                Home
+              </Link>
+              <Link to="/plants/new" className="navbar-item">
+                New Plant
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
