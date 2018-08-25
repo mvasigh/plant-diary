@@ -7,6 +7,7 @@ import HomeView from './views/HomeView';
 import LoginView from './views/LoginView';
 import RegisterView from './views/RegisterView';
 import NewPlantView from './views/NewPlantView';
+import EditPlantView from './views/EditPlantView';
 
 class App extends Component {
   render() {
@@ -18,7 +19,8 @@ class App extends Component {
             <Route path="/users/login" component={LoginView} />
             <Route path="/users/new" component={RegisterView} />
             <Route path="/plants/new" component={NewPlantView} />
-            <Route path="/" component={HomeView} />
+            <Route path="/plants/:plantId/edit" component={EditPlantView} />
+            <Route exact path="/" component={HomeView} />
           </Switch>
         </ScrollToTop>
       </Router>
