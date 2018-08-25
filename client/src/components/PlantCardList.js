@@ -7,7 +7,7 @@ class PlantCardList extends Component {
     return plants.map((plant, i) => (
       <li key={i}>
         <PlantCard
-          {...plant}
+          plant={{ ...plant }}
           onWaterClick={() => onWaterClick(plant._id)}
           onFertilizeClick={() => onFertilizeClick(plant._id)}
         />
