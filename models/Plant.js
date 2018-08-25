@@ -9,9 +9,10 @@ const plantSchema = new mongoose.Schema({
     waterFrequency: Number,
     // Days between fertilization
     fertilizerFrequency: Number,
+    // Possible values: full shade, part sun, full sun
     sunlightAmount: {
       type: String,
-      default: 'full'
+      default: 'full-sun'
     },
     notes: String
   },
