@@ -2,6 +2,7 @@ import {
   GET_PLANT,
   GET_ALL_PLANTS,
   CREATE_PLANT,
+  UPDATE_PLANT,
   WATER_PLANT,
   FERTILIZE_PLANT
 } from './Types';
@@ -24,11 +25,17 @@ export function getAllPlants() {
 }
 
 export function createPlant(plant) {
-  const request = axios.post('/api/plants', {
-    plant: plant
-  });
+  const request = axios.post('/api/plants', { plant });
   return {
     type: CREATE_PLANT,
+    payload: request
+  };
+}
+
+export function updatePlant(plantId, plant) {
+  const request = axios.put(`/api/plants/${plantId}`, { plant });
+  return {
+    type: UPDATE_PLANT,
     payload: request
   };
 }
