@@ -1,24 +1,30 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import Avatar from './Avatar';
-import Button from './Button';
+import { withStyles } from '@material-ui/core/styles';
+import {
+  Card,
+  CardHeader,
+  CardActions,
+  Avatar,
+  Button,
+  CardContent
+} from '@material-ui/core';
+import GrainIcon from '@material-ui/icons/Grain';
+import WavesIcon from '@material-ui/icons/Waves';
+
+const styles = theme => ({
+  card: {
+    marginBottom: '24px'
+  },
+  button: {
+    margin: theme.spacing.unit
+  },
+  extendedIcon: {
+    marginRight: theme.spacing.unit
+  }
+});
 
 class PlantCard extends Component {
-  renderHeader() {
-    const { name, type } = this.props;
-    return (
-      <article style={{ marginBottom: '1rem' }} className="media">
-        <figure className="media-left">
-          <Avatar imageSrc="https://png.icons8.com/material/50/000000/plant-under-sun.png" />
-        </figure>
-        <div className="media-content">
-          <p className="title is-3">{name}</p>
-          <p className="subtitle is-5">{type}</p>
-        </div>
-      </article>
-    );
-  }
-
   renderDetailBar() {
     const { water, fertilizer } = this.props.history;
     const waterTags = water.map(entry => (
@@ -42,37 +48,47 @@ class PlantCard extends Component {
   }
 
   renderActionBar() {
-    const { onWaterClick, onFertilizeClick } = this.props;
+    const { classes, onWaterClick, onFertilizeClick } = this.props;
     return (
-      <nav className="level is-mobile">
-        <div className="level-left">
-          <div className="level-item">Goodbye</div>
-        </div>
-        <div className="level-right">
-          <div className="level-item">
-            <Button color="success" onClick={onFertilizeClick}>
-              Fertilize
-            </Button>
-          </div>
-          <div className="level-item">
-            <Button color="link" onClick={onWaterClick}>
-              Water
-            </Button>
-          </div>
-        </div>
-      </nav>
+      <CardActions>
+        <Button
+          color="secondary"
+          className={classes.button}
+          variant="extendedFab"
+          onClick={onFertilizeClick}
+        >
+          <GrainIcon className={classes.extendedIcon} />
+          Fertilize
+        </Button>
+        <Button
+          color="primary"
+          className={classes.button}
+          variant="extendedFab"
+          onClick={onWaterClick}
+        >
+          <WavesIcon className={classes.extendedIcon} />
+          Water
+        </Button>
+      </CardActions>
     );
   }
 
   render() {
+    const { classes, onWaterClick, onFertilizeClick } = this.props;
     return (
-      <div className="box" style={{ marginBottom: '1rem' }}>
-        {this.renderHeader()}
-        {this.renderDetailBar()}
+      <Card className={classes.card}>
+        <CardHeader
+          avatar={<Avatar>{this.props.name[0]}</Avatar>}
+          title={this.props.name}
+          titleTypographyProps={{ variant: 'headline' }}
+          subheader={this.props.type}
+          subheaderTypographyProps={{ variant: 'subheading' }}
+        />
+        <CardContent>{this.renderDetailBar()}</CardContent>
         {this.renderActionBar()}
-      </div>
+      </Card>
     );
   }
 }
 
-export default PlantCard;
+export default withStyles(styles)(PlantCard);
