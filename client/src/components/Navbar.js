@@ -1,25 +1,33 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
+import { AppBar, Toolbar, Button, Typography } from '@material-ui/core';
+
+const styles = {
+  flex: {
+    flexGrow: 1
+  }
+};
 
 class Navbar extends Component {
   render() {
+    const { classes } = this.props;
     return (
-      <nav className="navbar">
-        <div style={{ maxWidth: '720px' }} className="container">
-          <div className="navbar-menu">
-            <div className="navbar-end">
-              <Link to="/" className="navbar-item">
-                Home
-              </Link>
-              <Link to="/plants/new" className="navbar-item">
-                New Plant
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <AppBar position="sticky" color="default">
+        <Toolbar>
+          <Typography variant="title" className={classes.flex}>
+            Plant Diary
+          </Typography>
+          <Link to="/">
+            <Button color="inherit">Home</Button>
+          </Link>
+          <Link to="/plants/new">
+            <Button color="inherit">Add Plant</Button>
+          </Link>
+        </Toolbar>
+      </AppBar>
     );
   }
 }
 
-export default Navbar;
+export default withStyles(styles)(Navbar);
