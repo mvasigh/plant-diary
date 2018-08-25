@@ -24,7 +24,7 @@ exports.createPlant = function(req, res, next) {
   });
 };
 
-exports.editPlant = function(req, res, next) {
+exports.updatePlant = function(req, res, next) {
   const { plant } = req.body;
   Plant.findByIdAndUpdate(
     req.params.plantId,

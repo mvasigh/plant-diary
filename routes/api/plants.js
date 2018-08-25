@@ -18,7 +18,7 @@ router.put(
   '/:plantId',
   requireAuth,
   requirePlantOwnership,
-  PlantController.editPlant
+  PlantController.updatePlant
 );
 
 router.get(
