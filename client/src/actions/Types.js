@@ -1,3 +1,7 @@
+// TOASTER ACTIONS
+export const SHOW_TOAST = 'show_toast';
+export const HIDE_TOAST = 'hide_toast';
+
 // PLANT ACTIONS
 export const GET_PLANT = 'get_plant';
 export const GET_ALL_PLANTS = 'get_all_plants';

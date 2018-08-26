@@ -8,6 +8,7 @@ import LoginView from './views/LoginView';
 import RegisterView from './views/RegisterView';
 import NewPlantView from './views/NewPlantView';
 import EditPlantView from './views/EditPlantView';
+import Toaster from './containers/Toaster';
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
             <Route path="/plants/:plantId/edit" component={EditPlantView} />
             <Route exact path="/" component={HomeView} />
           </Switch>
+          <Toaster />
         </ScrollToTop>
       </Router>
     );
