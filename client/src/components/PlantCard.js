@@ -58,9 +58,9 @@ class PlantCard extends Component {
     const { plant, classes } = this.props;
     const iconDisplays = [
       {
-        label: 'Last Watered',
-        icon: <WavesIcon className={classes.detailIcon} />,
-        detail: this.getMostRecent(plant.history.water).fromNow()
+        label: 'Sunlight',
+        icon: <WbSunnyIcon className={classes.detailIcon} />,
+        detail: _.startCase(plant.preferences.sunlight)
       },
       {
         label: 'Last Fertilized',
@@ -68,9 +68,9 @@ class PlantCard extends Component {
         detail: this.getMostRecent(plant.history.fertilizer).fromNow()
       },
       {
-        label: 'Sunlight',
-        icon: <WbSunnyIcon className={classes.detailIcon} />,
-        detail: _.startCase(plant.preferences.sunlight)
+        label: 'Last Watered',
+        icon: <WavesIcon className={classes.detailIcon} />,
+        detail: this.getMostRecent(plant.history.water).fromNow()
       }
     ].map((item, i) => (
       <Grid className={classes.iconDisplay} item xs={4} key={i}>
@@ -80,7 +80,7 @@ class PlantCard extends Component {
       </Grid>
     ));
     return (
-      <Grid container className={classes.detail} spacing={0}>
+      <Grid container className={classes.detail} spacing={8}>
         {iconDisplays}
       </Grid>
     );
