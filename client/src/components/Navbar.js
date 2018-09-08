@@ -16,7 +16,7 @@ class Navbar extends Component {
       <AppBar position="sticky" color="default">
         <Toolbar>
           <Typography variant="title" className={classes.flex}>
-            Plant Diary
+            <Link to="/">Plant Diary</Link>
           </Typography>
           <Link to="/">
             <Button color="inherit">Home</Button>
