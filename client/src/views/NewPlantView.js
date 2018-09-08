@@ -96,23 +96,21 @@ class NewPlantView extends Component {
 
   render() {
     return (
-      <div className="app-page">
-        <Section>
-          <div className="columns">
-            <div className="column is-8 is-offset-2">
-              <Card>
-                <CardHeader title="Add a Plant" />
-                <form onSubmit={this.handlePlantSubmit}>
-                  {this.renderNewPlantForm()}
-                  <CardActions>
-                    <Button type="submit">Create Plant</Button>
-                  </CardActions>
-                </form>
-              </Card>
-            </div>
+      <Section>
+        <div className="columns">
+          <div className="column is-8 is-offset-2">
+            <Card>
+              <CardHeader title="Add a Plant" />
+              <form onSubmit={this.handlePlantSubmit}>
+                {this.renderNewPlantForm()}
+                <CardActions>
+                  <Button type="submit">Create Plant</Button>
+                </CardActions>
+              </form>
+            </Card>
           </div>
-        </Section>
-      </div>
+        </div>
+      </Section>
     );
   }
 }

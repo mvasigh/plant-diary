@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Section from '../components/Section';
 
 class RegisterView extends Component {
   constructor(props) {
@@ -61,16 +62,14 @@ class RegisterView extends Component {
 
   render() {
     return (
-      <section className="section">
-        <div className="container">
-          <div className="columns is-desktop">
-            <div className="column is-6 is-offset-3">
-              <p className="title is-4">Create a new account</p>
-              <div className="box">{this.renderNewUserForm()}</div>
-            </div>
+      <Section>
+        <div className="columns is-desktop">
+          <div className="column is-6 is-offset-3">
+            <p className="title is-4">Create a new account</p>
+            <div className="box">{this.renderNewUserForm()}</div>
           </div>
         </div>
-      </section>
+      </Section>
     );
   }
 }

@@ -8,35 +8,33 @@ import {
   waterPlant,
   fertilizePlant
 } from '../actions/PlantsActions';
+import { showToast } from '../actions/ToasterActions';
+import { Typography } from '@material-ui/core';
+import Section from '../components/Section';
 
 class HomeView extends Component {
   componentDidMount() {
     this.props.getAllPlants();
   }
 
-  // TODO: figure out why card list of plants is not rendering
   renderPlantList() {
     const plants = _.toArray(this.props.plants);
-    const { waterPlant, fertilizePlant } = this.props;
+    if (plants.length === 0) {
+      return <Typography>No plants</Typography>;
+    }
+    const { waterPlant, fertilizePlant, showToast } = this.props;
     return (
       <PlantCardList
         plants={plants}
         onWaterClick={waterPlant}
         onFertilizeClick={fertilizePlant}
+        secondaryAction={showToast}
       />
     );
   }
 
   render() {
-    return (
-      <div className="app-page">
-        <section className="section">
-          <div style={{ maxWidth: '720px' }} className="container">
-            {this.renderPlantList()}
-          </div>
-        </section>
-      </div>
-    );
+    return <Section>{this.renderPlantList()}</Section>;
   }
 }
 
@@ -44,5 +42,5 @@ const mapStateToProps = state => ({ plants: state.plants });
 
 export default connect(
   mapStateToProps,
-  { getPlant, getAllPlants, waterPlant, fertilizePlant }
+  { getPlant, getAllPlants, waterPlant, fertilizePlant, showToast }
 )(HomeView);

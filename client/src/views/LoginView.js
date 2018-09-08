@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Section from '../components/Section';
 
 class LoginView extends Component {
   renderLoginForm() {
@@ -23,17 +24,15 @@ class LoginView extends Component {
 
   render() {
     return (
-      <section className="section">
-        <div className="container">
-          <div className="columns is-desktop">
-            <div className="column is-6 is-offset-3">
-              <p className="title is-4">Log in to your account</p>
-              <p className="subtitle is-6">Don't have an account? Register</p>
-              <div className="box">{this.renderLoginForm()}</div>
-            </div>
+      <Section>
+        <div className="columns is-desktop">
+          <div className="column is-6 is-offset-3">
+            <p className="title is-4">Log in to your account</p>
+            <p className="subtitle is-6">Don't have an account? Register</p>
+            <div className="box">{this.renderLoginForm()}</div>
           </div>
         </div>
-      </section>
+      </Section>
     );
   }
 }
