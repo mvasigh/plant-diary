@@ -3,12 +3,20 @@ import PlantCard from './PlantCard';
 
 class PlantCardList extends Component {
   renderPlants() {
-    const { plants, onWaterClick, onFertilizeClick } = this.props;
+    const {
+      plants,
+      onWaterClick,
+      onFertilizeClick,
+      secondaryAction
+    } = this.props;
     return plants.map((plant, i) => (
       <li key={i}>
         <PlantCard
           plant={{ ...plant }}
-          onWaterClick={() => onWaterClick(plant._id)}
+          onWaterClick={() => {
+            onWaterClick(plant._id);
+            return secondaryAction(`You watered ${plant.name}`);
+          }}
           onFertilizeClick={() => onFertilizeClick(plant._id)}
         />
       </li>
