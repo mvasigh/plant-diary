@@ -14,13 +14,15 @@ import {
   Grid,
   Typography
 } from '@material-ui/core';
+import CountdownButton from './CountdownButton';
 import GrainIcon from '@material-ui/icons/Grain';
 import WavesIcon from '@material-ui/icons/Waves';
 import EditIcon from '@material-ui/icons/Edit';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 
-moment.relativeTimeThreshold('m', 60);
-moment.relativeTimeThreshold('h', 24 * 26);
+// Experimenting with different thesholds for countdown buttons
+// moment.relativeTimeThreshold('m', 60);
+// moment.relativeTimeThreshold('h', 24 * 26);
 
 const styles = theme => ({
   detail: {
@@ -36,11 +38,9 @@ const styles = theme => ({
   card: {
     marginBottom: '24px'
   },
-  button: {
-    margin: theme.spacing.unit
-  },
-  extendedIcon: {
-    marginRight: theme.spacing.unit
+  actionBar: {
+    justifyContent: 'flex-end',
+    marginRight: theme.spacing.unit * 2
   }
 });
 
@@ -90,6 +90,10 @@ class PlantCard extends Component {
     const { plant, classes, onWaterClick, onFertilizeClick } = this.props;
     const { history, preferences } = plant;
 
+    // const getPercentageProgress = (from, to) => {
+    //   const timeNow = Date.now();
+    // }
+
     const timeTilWater = this.getTimeUntil(
       history.water,
       preferences.waterFrequency,
@@ -102,25 +106,21 @@ class PlantCard extends Component {
     );
 
     return (
-      <CardActions>
-        <Button
-          color="secondary"
-          className={classes.button}
-          variant="extendedFab"
+      <CardActions className={classes.actionBar}>
+        <CountdownButton
+          label={timeTilFertilizer}
+          progress={45}
+          color="green"
           onClick={onFertilizeClick}
-        >
-          <GrainIcon className={classes.extendedIcon} />
-          {timeTilFertilizer}
-        </Button>
-        <Button
-          color="primary"
-          className={classes.button}
-          variant="extendedFab"
+          icon={<GrainIcon color="inherit" />}
+        />
+        <CountdownButton
+          label={timeTilWater}
+          progress={45}
+          color="blue"
           onClick={onWaterClick}
-        >
-          <WavesIcon className={classes.extendedIcon} />
-          {timeTilWater}
-        </Button>
+          icon={<WavesIcon />}
+        />
       </CardActions>
     );
   }
